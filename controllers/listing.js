@@ -81,7 +81,10 @@ module.exports.searchListings = async (req, res) => {
   }
 
   const allListings = await Listing.find({
-    country: { $regex: q, $options: "i" }, // case-insensitive match
+    $or: [
+      { location: { $regex: q, $options: "i" } },
+      { country: { $regex: q, $options: "i" } },
+    ],
   });
   
   if (allListings.length === 0) {
