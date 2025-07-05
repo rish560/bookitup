@@ -16,6 +16,9 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const aiRouter = require("./routes/ai.js");
+
+
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -34,11 +37,22 @@ main()
 .then((res)=>{
     console.log("connected to db");
 }).catch((err)=>{
-    console.log(err);
-})
+    console.error("Database connection error:",err);
+    process.exit(1);
+});
 async function main(){
-   await mongoose.connect(dbUrl);
-};
+  try {
+    await mongoose.connect(dbUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log("✅ Connected to MongoDB Atlas");
+  } catch (err) {
+    console.error("❌ MongoDB connection failed:", err.message);
+    process.exit(1); // Exit so you don't start the server without DB
+  }
+}
+;
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -84,6 +98,7 @@ app.use((req,res,next)=>{
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/", userRouter);
+app.use("/ai", aiRouter);
 
 app.get("/", (req, res) => {
   res.redirect("/listings"); 

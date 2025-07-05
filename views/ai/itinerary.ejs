@@ -1,0 +1,50 @@
+<% layout("layouts/boilerplate") %>
+
+<style>
+  .ai-card {
+    background: #f9f9ff;
+    border: 1px solid #e1e1f0;
+    border-radius: 10px;
+  }
+  .ai-card h4 {
+    color: #4e4e88;
+    font-weight: bold;
+  }
+  .ai-list li {
+    background-color: #ffffff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eaeaea;
+    color: #333;
+  }
+  .ai-list li:last-child {
+    border-bottom: none;
+  }
+  .bold-day {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+</style>
+
+<div class="col-8 offset-2 mt-4">
+  <h2 class="mb-4 text-center text-primary">
+    Your AI Itinerary for <%= location %> (<%= days %> days)
+  </h2>
+
+  <% let formatted = itinerary.split('\n').filter(line => line.trim() !== ""); %>
+
+  <div class="card ai-card p-4 shadow-sm">
+    <h4 class="mb-3">Day-wise Travel Plan ✈️</h4>
+    <ul class="list-group ai-list">
+      <% formatted.forEach(line => { %>
+        <li class="list-group-item">
+          <% if (line.match(/^Day\s*\d+/i)) { %>
+            <span class="bold-day"><%= line %></span>
+          <% } else { %>
+            <%= line %>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>

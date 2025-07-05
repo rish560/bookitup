@@ -1,55 +1,87 @@
 <style>
-  .search-btn{
+  .search-btn {
     background-color: #fe424d;
-    color:white;
+    color: white;
     border-radius: 25px;
-    padding:0 1rem 0 1rem;
+    padding: 0 1rem;
   }
-   .search-btn:hover{
+
+  .search-btn:hover {
     background-color: #fe424d;
-    color:white;
+    color: white;
   }
-  .search-btn i{
+
+  .search-btn i {
     display: inline;
     margin-right: 0.5rem;
   }
-  .search-inp{
-      border-radius: 25px;
-      padding:0.5rem 3rem 0.5rem 3rem;
+
+  .search-inp {
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .search-inp,
+    .search-btn {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .navbar-nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    #themeToggle {
+      margin-top: 0.5rem;
+    }
   }
 </style>
 
-
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></i></a>
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+      <!-- Left Nav -->
+      <div class="navbar-nav me-auto mb-2 mb-md-0">
+        <a class="nav-link" href="/listings">Home</a>
       </div>
-      <div class="navbar-nav ms-auto">
 
-        <form class="d-flex" role="search" action="/listings/search" method="GET">
-          <input class="form-control me-2 search-inp" type="search" name="q" placeholder="Search Destination"/>
-          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search
+      <!-- Search -->
+      <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mb-2 mb-md-0">
+        <form class="d-flex flex-column flex-md-row" role="search" action="/listings/search" method="GET">
+          <input class="form-control me-md-2 search-inp" type="search" name="q" placeholder="Search Destination" />
+          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search
           </button>
-       </form>
+        </form>
       </div>
 
-      <div class="navbar-nav ms-auto">
-         <a class="nav-link" href="/listings/new">Become a host</a>
-        <%if(!currUser){%>
-        <a class="nav-link" href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <%}%>
-        <%if(currUser){%>
-        <a class="nav-link" href="/logout"><b>Log out</b></a>
-        <%}%>
-      </div>
+      <!-- Right Nav -->
+      <div class="navbar-nav ms-auto d-flex flex-column flex-md-row align-items-start align-items-md-center">
+        <a class="nav-link" href="/listings/new">Become a host</a>
 
+        <button id="themeToggle" class="btn btn-outline-dark me-md-2">
+          🌙
+        </button>
+
+        <% if (currUser) { %>
+          <a class="nav-link" href="/ai/travel">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> AI Trip Planner
+          </a>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } else { %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+      </div>
     </div>
   </div>
 </nav>

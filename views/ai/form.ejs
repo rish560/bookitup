@@ -1,0 +1,16 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="col-6 offset-3 mt-5">
+  <h2>AI Travel Assistant</h2>
+  <form method="POST" action="/ai/travel">
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input name="location" required type="text" class="form-control" placeholder="e.g., Manali" />
+    </div>
+    <div class="mb-3">
+      <label for="days" class="form-label">Number of Days</label>
+      <input name="days" required type="number" min="1" class="form-control" placeholder="e.g., 3" />
+    </div>
+    <button class="btn btn-primary">Ask AI</button>
+  </form>
+</div>
