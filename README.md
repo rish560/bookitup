@@ -1,24 +1,23 @@
-# BookItUp 🏡
+🏡 BookItUp
+A full-stack Airbnb-style web app built with Node.js, Express, MongoDB, and EJS, featuring AI-powered travel planning.
 
-A full-stack app built with Node.js, Express, MongoDB, and EJS.
+🚀 Features
+CRUD property listings
 
-## Features
-- Add/Edit/Delete property listings
-- User authentication & session handling
-- MongoDB Atlas database
-- Cloudinary image uploads
-- Render deployment-ready
+User auth & sessions
 
-## Tech Stack
-- Node.js + Express
-- MongoDB + Mongoose
-- EJS Templating
-- Cloudinary (images)
-- Bootstrap (UI)
-- Render (deployment)
+Cloudinary image uploads
 
-## Running Locally
+AI-based travel itinerary generator
 
-```bash
-npm install
-node app.js
+Category filters
+
+MongoDB Atlas cloud DB
+
+Deployed on Render
+
+🧠 AI Feature
+Generates personalized travel itineraries using OpenRouter AI based on user input (location + days). Adds real-world value for travelers.
+
+⚙️ Tech Stack
+Node.js · Express · MongoDB · Mongoose · EJS · Bootstrap · Cloudinary · Render · AI (OpenRouter)
