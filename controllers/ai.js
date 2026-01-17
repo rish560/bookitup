@@ -7,12 +7,11 @@ module.exports.generateItinerary = async (req, res) => {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "openrouter/auto",
+        model: "meta-llama/llama-3.1-8b-instruct:free",
         messages: [
           {
             role: "user",
             content: `Create a ${days}-day travel itinerary for ${location}. Format it with day-wise bullet points.`
-
           }
         ],
         max_tokens: 1000 
@@ -20,7 +19,9 @@ module.exports.generateItinerary = async (req, res) => {
       {
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "HTTP-Referer": "http://localhost:8080",
+          "X-Title": "BookItUp"
         }
       }
     );
